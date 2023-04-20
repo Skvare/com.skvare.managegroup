@@ -69,14 +69,15 @@ class CRM_Managegroup_Check {
       }
       if (!empty($groupsDetails)) {
         $html = '<table>';
-        $html .= '<tr><th>Group</th><th>Action Date</th><th>Action Type</th></tr>';
+        $html .= '<tr><th>Group</th><th>Action Type</th><th>Action Date</th></tr>';
         foreach ($groupsDetails as $groupsDetail) {
-          $html .= '<tr><td>' . $groupsDetail['title'] . '</td><td>' . $groupsDetail['action'] . '</td><td>' . $groupsDetail['inactive_date'] . '</td></tr>';
+          $style = $groupsDetail['is_overdue'] ? 'status crm-error' : '';
+          $html .= '<tr><td>' . $groupsDetail['title'] . '</td><td>' . $groupsDetail['action'] . "</td><td><span class='{$style}'>" . $groupsDetail['inactive_date'] . '</span></td></tr>';
         }
         $html .= '<tr><td colspan="3">These Group(s) are going to be deleted or disabled as per the action set on it.</td></tr>';
         $html .= '</table>';
         if (!empty($html)) {
-          $messages[] =
+          $message =
             new CRM_Utils_Check_Message(
               __FUNCTION__,
               $html,
@@ -84,8 +85,8 @@ class CRM_Managegroup_Check {
               \Psr\Log\LogLevel::ERROR,
               'fa-bug'
             );
+	  $this->messages[] = $message;
         }
-        $this->messages[] = $message;
       }
 
       return;
