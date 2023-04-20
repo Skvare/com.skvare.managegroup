@@ -1,4 +1,7 @@
 <div class="crm-block crm-content-block crm-group-view-form-block">
+{if ! $mailingGroups}
+   <div class='help'>No record available.</div>
+{else}
   <table class="selector row-highlight">
     <tr>
       <th class="col">{ts}Mailing Name{/ts}</th>
@@ -22,4 +25,5 @@
       {/foreach}
     </tr>
   </table>
+{/if}
 </div>

@@ -14,7 +14,7 @@ FROM civicrm_mailing m
 inner JOIN `civicrm_mailing_group` mg on (m.id = mg.mailing_id)
 LEFT JOIN civicrm_mailing_job mjob ON mjob.mailing_id = m.id AND mjob.parent_id IS NULL AND mjob.is_test != 1
 WHERE mg.entity_table = 'civicrm_group'
-and mg.entity_id = %1";
+and mg.entity_id = %1 order by mjob.end_date desc";
     $params = [1 => [$gid, 'Positive']];
     $dao = CRM_Core_DAO::executeQuery($sql, $params);
     $mailingGroups = [];
