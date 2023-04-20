@@ -63,7 +63,7 @@ class CRM_Managegroup_Check {
             $groupsDetail['action'] = 'Delete';
           }
           else {
-            $groupsDetail['action'] = 'Delete';
+            $groupsDetail['action'] = 'Disable';
           }
           $groupsDetails[] = $groupsDetail;
         }
