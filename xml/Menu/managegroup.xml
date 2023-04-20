@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<menu>
+  <item>
+    <path>civicrm/group/mailinglist</path>
+    <page_callback>CRM_Managegroup_Page_Groupmailinglist</page_callback>
+    <title>Groupmailinglist</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+</menu>

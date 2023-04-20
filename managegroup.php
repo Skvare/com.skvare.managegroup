@@ -186,30 +186,27 @@ function managegroup_civicrm_buildForm($formName, &$form) {
   }
 }
 
-// --- Functions below this ship commented out. Uncomment as required. ---
+/**
+ * Implementation of hook_civicrm_links
+ */
+function managegroup_civicrm_links($op, $objectName, $objectId, &$links, &$mask, &$values) {
+  if ($objectName == 'Group' && in_array($op, ['group.selector.row'])) {
+    $values['id'] = $objectId;
+    $links[] = [
+      'name' => ts('Associated Mailings'),
+      'url' => 'civicrm/group/mailinglist',
+      'qs' => 'reset=1&id=%%id%%',
+      'title' => ts('Associated Mailings'),
+      //'extra' => "target='_blank'",
+      //'class' => ['no-popup'],
+    ];
+  }
+}
 
 /**
- * Implements hook_civicrm_preProcess().
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_preProcess
+ * Implements hook_civicrm_check().
  */
-//function managegroup_civicrm_preProcess($formName, &$form) {
-//
-//}
-
-/**
- * Implements hook_civicrm_navigationMenu().
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_navigationMenu
- */
-//function managegroup_civicrm_navigationMenu(&$menu) {
-//  _managegroup_civix_insert_navigation_menu($menu, 'Mailings', [
-//    'label' => E::ts('New subliminal message'),
-//    'name' => 'mailing_subliminal_message',
-//    'url' => 'civicrm/mailing/subliminal',
-//    'permission' => 'access CiviMail',
-//    'operator' => 'OR',
-//    'separator' => 0,
-//  ]);
-//  _managegroup_civix_navigationMenu($menu);
-//}
+function managegroup_civicrm_check(&$messages) {
+  $checks = new CRM_Managegroup_Check($messages);
+  $messages = $checks->checkRequirements();
+}
