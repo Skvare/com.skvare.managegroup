@@ -55,6 +55,7 @@ class CRM_Managegroup_Check {
       foreach ($resultGroups['values'] as $group) {
         if (!empty($group['inactive_date'])) {
           $groupsDetail = [];
+          $groupsDetail['id'] = $group['id'];
           $groupsDetail['title'] = $group['title'];
           $groupsDetail['is_overdue'] = CRM_Utils_Date::overdue($group['inactive_date']);
           $groupsDetail['inactive_date'] = CRM_Utils_Date::customFormat($group['inactive_date']);
@@ -72,6 +73,11 @@ class CRM_Managegroup_Check {
         $html .= '<tr><th>Group</th><th>Action Type</th><th>Action Date</th></tr>';
         foreach ($groupsDetails as $groupsDetail) {
           $style = $groupsDetail['is_overdue'] ? 'status crm-error' : '';
+          $url = CRM_Utils_System::url(
+            'civicrm/group',
+            'id=' . $groupsDetail['id'] . '&action=update&reset=1'
+          );
+          $groupsDetail['title'] = "<a href='{$url}' target='_blank'>" . $groupsDetail['title'] . '</a>';
           $html .= '<tr><td>' . $groupsDetail['title'] . '</td><td>' . $groupsDetail['action'] . "</td><td><span class='{$style}'>" . $groupsDetail['inactive_date'] . '</span></td></tr>';
         }
         $html .= '<tr><td colspan="3">These Group(s) are going to be deleted or disabled as per the action set on it.</td></tr>';
