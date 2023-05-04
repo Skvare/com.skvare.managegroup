@@ -52,3 +52,17 @@ You can see two fields:
 inactive date set and that date is overdue.
 * So based on the action set for that group, either group gets disabled or
   gets deleted (default action is disable group).
+
+
+## Check CiviMails associated with the Group.
+
+* Link is available in front of the group to see if any mailing is linked with this group, and
+what is the last date it was used in a tabular format with other details.
+
+
+![Screenshot](/images/group_in_mailing.png)
+
+
+## See Group action status on System Status screen.
+
+![Screenshot](/images/action_status.png)
