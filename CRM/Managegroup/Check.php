@@ -88,7 +88,7 @@ class CRM_Managegroup_Check {
               __FUNCTION__,
               $html,
               E::ts('Groups Operations'),
-              \Psr\Log\LogLevel::ERROR,
+              \Psr\Log\LogLevel::INFO,
               'fa-bug'
             );
 	  $this->messages[] = $message;
