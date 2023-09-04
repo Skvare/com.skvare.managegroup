@@ -22,7 +22,7 @@ class CRM_Managegroup_Page_Reminderlist extends CRM_Core_Page {
     while ($dao->fetch()) {
       $url = CRM_Utils_System::url(
         'civicrm/admin/scheduleReminders',
-        'action=update&mid=' . $dao->id . '&reset=1'
+        'action=update&id=' . $dao->id . '&reset=1'
       );
       $limitTo = '';
       if ($dao->limit_to == '0') {
