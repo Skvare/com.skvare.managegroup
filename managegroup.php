@@ -200,6 +200,14 @@ function managegroup_civicrm_links($op, $objectName, $objectId, &$links, &$mask,
       //'extra' => "target='_blank'",
       //'class' => ['no-popup'],
     ];
+    $links[] = [
+      'name' => ts('Associated Reminder'),
+      'url' => 'civicrm/group/reminderlist',
+      'qs' => 'reset=1&id=%%id%%',
+      'title' => ts('Associated Reminder'),
+      //'extra' => "target='_blank'",
+      //'class' => ['no-popup'],
+    ];
   }
 }
 

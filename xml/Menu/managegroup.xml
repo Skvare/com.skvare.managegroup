@@ -6,4 +6,10 @@
     <title>Group Mailing List</title>
     <access_arguments>administer CiviCRM</access_arguments>
   </item>
+  <item>
+    <path>civicrm/group/reminderlist</path>
+    <page_callback>CRM_Managegroup_Page_Reminderlist</page_callback>
+    <title>Group In Reminder List</title>
+    <access_arguments>administer CiviCRM</access_arguments>
+  </item>
 </menu>
