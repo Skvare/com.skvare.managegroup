@@ -1,9 +1,7 @@
 <?php
 
 require_once 'managegroup.civix.php';
-// phpcs:disable
 use CRM_Managegroup_ExtensionUtil as E;
-// phpcs:enable
 
 /**
  * Implements hook_civicrm_config().
@@ -129,41 +127,44 @@ function managegroup_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_entityTypes
  */
 function managegroup_civicrm_entityTypes(&$entityTypes) {
-  $entityTypes['CRM_Contact_DAO_Group']['fields_callback'][]
-    = function ($class, &$fields) {
-    $fields['inactive_date'] = [
-      'name' => 'inactive_date',
-      'type' => CRM_Utils_Type::T_TIMESTAMP,
-      'title' => ts('When Group should be Inactive'),
-      'description' => 'Date for settng Group Inactive.',
-      'required' => FALSE,
-      'where' => 'civicrm_group.inactive_date',
-      'table_name' => 'civicrm_group',
-      'entity' => 'Group',
-      'bao' => 'CRM_Contact_DAO_Group',
-      'localizable' => 0,
-    ];
+  foreach ($entityTypes as $groupKey => $entityType) {
+    if ($entityType['name'] === 'Group') {
+      $entityTypes[$groupKey]['fields_callback'][] = function ($class, &$fields) {
+        $fields['inactive_date'] = [
+          'name' => 'inactive_date',
+          'type' => CRM_Utils_Type::T_TIMESTAMP,
+          'title' => E::ts('When Group should be Inactive'),
+          'description' => 'Date for settng Group Inactive.',
+          'required' => FALSE,
+          'where' => 'civicrm_group.inactive_date',
+          'table_name' => 'civicrm_group',
+          'entity' => 'Group',
+          'bao' => 'CRM_Contact_DAO_Group',
+          'localizable' => 0,
+        ];
 
-    $fields['inactive_action'] = [
-      'name' => 'inactive_action',
-      'type' => CRM_Utils_Type::T_INT,
-      'title' => ts('Action on Inactive'),
-      'description' => 'Action on Inactive',
-      'required' => FALSE,
-      'where' => 'civicrm_group.inactive_action',
-      'table_name' => 'civicrm_group',
-      'entity' => 'Group',
-      'bao' => 'CRM_Contact_DAO_Group',
-      'localizable' => 0,
-      'default' => '1',
-      'html' => [
-        'type' => 'Select',
-      ],
-      'pseudoconstant' => [
-        'callback' => 'CRM_Managegroup_Utils::getInactiveAction',
-      ],
-    ];
-  };
+        $fields['inactive_action'] = [
+          'name' => 'inactive_action',
+          'type' => CRM_Utils_Type::T_INT,
+          'title' => E::ts('Action on Inactive'),
+          'description' => 'Action on Inactive',
+          'required' => FALSE,
+          'where' => 'civicrm_group.inactive_action',
+          'table_name' => 'civicrm_group',
+          'entity' => 'Group',
+          'bao' => 'CRM_Contact_DAO_Group',
+          'localizable' => 0,
+          'default' => '1',
+          'html' => [
+            'type' => 'Select',
+          ],
+          'pseudoconstant' => [
+            'callback' => 'CRM_Managegroup_Utils::getInactiveAction',
+          ],
+        ];
+      };
+    }
+  }
   _managegroup_civix_civicrm_entityTypes($entityTypes);
 }
 
@@ -179,9 +180,9 @@ function managegroup_civicrm_buildForm($formName, &$form) {
     ($form->getAction() == CRM_Core_Action::ADD ||
       $form->getAction() == CRM_Core_Action::UPDATE)) {
     $list = CRM_Managegroup_Utils::getInactiveAction();
-    $form->add('datepicker', 'inactive_date', ts('InActive Date'), [], FALSE,
+    $form->add('datepicker', 'inactive_date', E::ts('InActive Date'), [], FALSE,
       ['time' => TRUE]);
-    $form->add('select', 'inactive_action', ts('InActive Action'), ['' =>
+    $form->add('select', 'inactive_action', E::ts('InActive Action'), ['' =>
         '- select -'] + $list, FALSE);
   }
 }
@@ -193,18 +194,18 @@ function managegroup_civicrm_links($op, $objectName, $objectId, &$links, &$mask,
   if ($objectName == 'Group' && in_array($op, ['group.selector.row'])) {
     $values['id'] = $objectId;
     $links[] = [
-      'name' => ts('Associated Mailings'),
+      'name' => E::ts('Associated Mailings'),
       'url' => 'civicrm/group/mailinglist',
       'qs' => 'reset=1&id=%%id%%',
-      'title' => ts('Associated Mailings'),
+      'title' => E::ts('Associated Mailings'),
       //'extra' => "target='_blank'",
       //'class' => ['no-popup'],
     ];
     $links[] = [
-      'name' => ts('Associated Reminder'),
+      'name' => E::ts('Associated Reminder'),
       'url' => 'civicrm/group/reminderlist',
       'qs' => 'reset=1&id=%%id%%',
-      'title' => ts('Associated Reminder'),
+      'title' => E::ts('Associated Reminder'),
       //'extra' => "target='_blank'",
       //'class' => ['no-popup'],
     ];
