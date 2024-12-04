@@ -100,7 +100,7 @@ function managegroup_civicrm_links($op, $objectName, $objectId, &$links, &$mask,
       'url' => 'civicrm/group/mailinglist',
       'qs' => 'reset=1&id=%%id%%',
       'title' => ts('Associated Mailings'),
-      //'extra' => "target='_blank'",
+      'extra' => "target='_blank'",
       //'class' => ['no-popup'],
     ];
     $links[] = [
@@ -108,7 +108,7 @@ function managegroup_civicrm_links($op, $objectName, $objectId, &$links, &$mask,
       'url' => 'civicrm/group/reminderlist',
       'qs' => 'reset=1&id=%%id%%',
       'title' => ts('Associated Reminder'),
-      //'extra' => "target='_blank'",
+      'extra' => "target='_blank'",
       //'class' => ['no-popup'],
     ];
   }
