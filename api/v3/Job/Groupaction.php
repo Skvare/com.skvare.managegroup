@@ -40,7 +40,7 @@ function civicrm_api3_job_Groupaction($params) {
       if (!empty($group['inactive_date']) && CRM_Utils_Date::overdue($group['inactive_date'])) {
         // Default action is disable group.
         if ($group['inactive_action'] == 1 || empty($group['inactive_action'])) {
-          // Group group disable.
+          // Group disable.
           try {
             $result = civicrm_api3('Group', 'create', [
               'id' => $group['id'],

@@ -91,7 +91,7 @@ class CRM_Managegroup_Check {
               \Psr\Log\LogLevel::INFO,
               'fa-bug'
             );
-	  $this->messages[] = $message;
+          $this->messages[] = $message;
         }
       }
 

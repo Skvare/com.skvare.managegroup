@@ -1,7 +1,13 @@
 <?php
 
 Class CRM_Managegroup_Utils {
-  public static function getInactiveAction() {
+
+  /**
+   * Get action for group.
+   *
+   * @return string[]
+   */
+  public static function getInactiveAction(): array {
     return [
       '1' => 'Disable',
       '2' => 'Delete'

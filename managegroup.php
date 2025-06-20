@@ -40,13 +40,18 @@ function managegroup_civicrm_enable() {
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_entityTypes
  */
 function managegroup_civicrm_entityTypes(&$entityTypes) {
-  $entityTypes['CRM_Contact_DAO_Group']['fields_callback'][]
+  $civiVersion = CRM_Utils_System::version();
+  $entity = 'CRM_Contact_DAO_Group';
+  if (version_compare($civiVersion, '5.75.0') >= 0) {
+    $entity = 'Group';
+  }
+  $entityTypes[$entity]['fields_callback'][]
     = function ($class, &$fields) {
     $fields['inactive_date'] = [
       'name' => 'inactive_date',
       'type' => CRM_Utils_Type::T_TIMESTAMP,
       'title' => ts('When Group should be Inactive'),
-      'description' => 'Date for settng Group Inactive.',
+      'description' => 'Date for setting Group Inactive.',
       'required' => FALSE,
       'where' => 'civicrm_group.inactive_date',
       'table_name' => 'civicrm_group',
@@ -66,7 +71,6 @@ function managegroup_civicrm_entityTypes(&$entityTypes) {
       'entity' => 'Group',
       'bao' => 'CRM_Contact_DAO_Group',
       'localizable' => 0,
-      'default' => '1',
       'html' => [
         'type' => 'Select',
       ],
