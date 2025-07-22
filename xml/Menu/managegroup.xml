@@ -3,13 +3,15 @@
   <item>
     <path>civicrm/group/mailinglist</path>
     <page_callback>CRM_Managegroup_Page_Groupmailinglist</page_callback>
-    <title>Group Mailing List</title>
-    <access_arguments>administer CiviCRM</access_arguments>
+    <title>Group Associated Mailings</title>
+    <access_arguments>access CiviMail</access_arguments>
+    <weight>10</weight>
   </item>
   <item>
     <path>civicrm/group/reminderlist</path>
     <page_callback>CRM_Managegroup_Page_Reminderlist</page_callback>
-    <title>Group In Reminder List</title>
+    <title>Group Associated Reminders</title>
     <access_arguments>administer CiviCRM</access_arguments>
+    <weight>20</weight>
   </item>
 </menu>

@@ -3,7 +3,7 @@
     <td class="label">{$form.inactive_date.label}</td>
     <td class="html-adjust">{$form.inactive_date.html}<br>
       <span class="description">
-      Specify the date and time when this group will be disabled or deleted.
+      {ts}Specify the date and time when this group should be automatically disabled or deleted. Leave blank to keep the group active indefinitely.{/ts}
       </span>
     </td>
   </tr>
@@ -11,7 +11,7 @@
     <td class="label">{$form.inactive_action.label}</td>
     <td class="html-adjust">{$form.inactive_action.html}<br>
       <span class="description">
-      Choose the action to be taken on the above specified date, default action is disable the group.
+      {ts}Choose the action to perform when the inactive date is reached. <strong>Disable</strong> will make the group inactive but preserve its data. <strong>Delete</strong> will permanently remove the group and cannot be <undone class="{/ts}"></undone>
       </span>
     </td>
   </tr>
