@@ -17,7 +17,7 @@ class CRM_Managegroup_Check {
    *
    * @param array $messages
    *
-   * @throws \API_Exception
+   * @throws \CRM_Core_Exception
    * @throws \Civi\API\Exception\UnauthorizedException
    */
   public function __construct($messages) {
@@ -26,8 +26,8 @@ class CRM_Managegroup_Check {
 
   /**
    * @return array
-   * @throws \API_Exception
-   * @throws \CiviCRM_API3_Exception
+   * @throws \CRM_Core_Exception
+   * @throws \CRM_Core_Exception
    * @throws \Civi\API\Exception\UnauthorizedException
    */
   public function checkRequirements() {
@@ -39,8 +39,8 @@ class CRM_Managegroup_Check {
   /**
    * Check Group is set to inactive or disable.
    *
-   * @throws \API_Exception
-   * @throws \CiviCRM_API3_Exception
+   * @throws \CRM_Core_Exception
+   * @throws \CRM_Core_Exception
    * @throws \Civi\API\Exception\UnauthorizedException
    */
   private function checkIfGroupisSetToInactive() {

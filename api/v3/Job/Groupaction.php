@@ -22,7 +22,7 @@ function _civicrm_api3_job_Groupaction_spec(&$spec) {
  *
  * @see civicrm_api3_create_success
  *
- * @throws API_Exception
+ * @throws CRM_Core_Exception
  */
 function civicrm_api3_job_Groupaction($params) {
   // Fetch Active Group with date set for to mark inactive.
@@ -48,7 +48,7 @@ function civicrm_api3_job_Groupaction($params) {
             ]);
             $disableGroups[] = $group['title'] . ' ( ' . $group['id'] . ') ';
           }
-          catch (CiviCRM_API3_Exception $e) {
+          catch (CRM_Core_Exception $e) {
 
           }
         }
