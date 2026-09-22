@@ -46,7 +46,7 @@ class api_v3_Job_GroupactionTest extends \PHPUnit\Framework\TestCase implements 
    * Note how the function name begins with the word "test".
    */
   public function testApiExample() {
-    $result = civicrm_api3('Job', 'groupaction', array('magicword' => 'sesame'));
+    $result = civicrm_api3('Job', 'groupaction', ['magicword' => 'sesame']);
     $this->assertEquals('Twelve', $result['values'][12]['name']);
   }
 
